@@ -5,7 +5,7 @@ import SelectInput from './components/general/SelectInput';
 import Button from './components/general/Button';
 import SearchBar from './components/general/SearchBar';
 import Dashboard from './components/general/Dashboard'; // Placeholder, create this component later
-import Authentication from './components/general/Authentication'; // Placeholder, create this component later
+import Authentication from './routes/auth/Authentication';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,7 +42,10 @@ function App() {
       {isLoggedIn ? (
         <Dashboard username={userUsername} />
       ) : (
-        <Authentication />
+        <Authentication 
+          setIsLoggedIn={setIsLoggedIn} 
+          setUserUsername={setUserUsername}
+        />
       )}
       <Input 
         label="Username" 
