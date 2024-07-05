@@ -14,7 +14,7 @@ const Input = ({ label, type, className, value, setValue, icon, inputAttributes 
   // component returns a div containing an optional label, an optional
   // icon, and an input element with the appropriate attributes
   return (
-    <div className={`input-container ${className}`}>
+    <div className={className}>
       {label && <label className="input-label">{label}</label>}
       {icon && <span className="input-icon">{icon}</span>}
       <input
