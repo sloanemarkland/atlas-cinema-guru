@@ -4,13 +4,8 @@ import React from 'react';
 import './auth.css';
 
 const Login = ({ username, password, setUsername, setPassword }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle login logic here - aka make API request to log in
-  };
-
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
+    <>
       <input
         type="text"
         placeholder="Username"
@@ -28,7 +23,7 @@ const Login = ({ username, password, setUsername, setPassword }) => {
       <button type="submit" className="auth-button">
         Sign In
       </button>
-    </form>
+    </>
   );
 };
 

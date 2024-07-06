@@ -1,0 +1,27 @@
+/* src/components/navigation/navigation.css */
+
+
+/* Styling for the header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #444;
+}
+
+.header img {
+    border-radius: 50%;
+}
+
+.header p {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.header .logout {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: red;
+}
