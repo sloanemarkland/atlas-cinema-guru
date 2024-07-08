@@ -1,73 +1,43 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
-import Input from './components/general/Input';
-import SelectInput from './components/general/SelectInput';
-import Button from './components/general/Button';
-import SearchBar from './components/general/SearchBar';
-import Dashboard from './components/general/Dashboard'; // Placeholder, create this component later
 import Authentication from './routes/auth/Authentication';
+import Dashboard from './routes/dashboard/Dashboard';
 
 function App() {
+  // State variables manage auth status and username of logged-in user
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userUsername, setUserUsername] = useState('');
-  const [username, setUsername] = useState('');
-  const [sortOption, setSortOption] = useState('1');
 
+  // Hook to fetch and validate the authentication status using the
+  // token stored in local storage
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-
-    if (accessToken) {
-      fetch('/api/auth/', {
-        method: 'POST',
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      axios.post('http://localhost:8000/api/auth', {}, {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/json'
+          Authorization: `Bearer ${token}`
         }
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          setIsLoggedIn(true);
-          setUserUsername(data.username);
-        }
+      .then(response => {
+        setIsLoggedIn(true);
+        setUserUsername(response.data.username);
       })
       .catch(error => {
-        console.error('Error:', error);
+        console.error('Authentication failed', error);
       });
     }
   }, []);
 
+  // Conditional rendering to display either Auth component or Dashboard
+  // component based on isLoggedIn state.
   return (
     <div className="App">
       {isLoggedIn ? (
-        <Dashboard username={userUsername} />
+        <Dashboard userUsername={userUsername} setIsLoggedIn={setIsLoggedIn} />
       ) : (
-        <Authentication 
-          setIsLoggedIn={setIsLoggedIn} 
-          setUserUsername={setUserUsername}
-        />
+        <Authentication setIsLoggedIn={setIsLoggedIn} setUserUsername={setUserUsername} />
       )}
-      <Input 
-        label="Username" 
-        type="text" 
-        value={username} 
-        setValue={setUsername} 
-        icon={<i className="fas fa-user" />} 
-        inputAttributes={{ placeholder: 'Enter your username' }}
-      />
-      <SelectInput 
-        label="Sort" 
-        options={[{ value: '1', label: 'Default' }, { value: '2', label: 'Latest' }]} 
-        value={sortOption} 
-        setValue={setSortOption}
-      />
-      <Button 
-        label="Load More..." 
-        className="button-primary" 
-        onClick={() => {}} 
-        icon={<i className="fas fa-search" />}
-      />
-      <SearchBar/>
     </div>
   );
 }

@@ -1,0 +1,50 @@
+/* src/components/components.css */
+
+/* Activity */
+.activity-item {
+    margin: 10px 0;
+    color: white;
+  }
+  
+  /* Common styles for sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .sidebar.small {
+    width: 60px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar li:hover {
+    background-color: #444;
+  }
+  
+  .sidebar li .icon {
+    margin-right: 10px;
+  }
+  
+  .activities {
+    margin-top: 20px;
+  }
+  
+  .activities .activity-item {
+    padding: 5px 0;
+  }
+  

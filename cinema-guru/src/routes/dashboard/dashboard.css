@@ -5,7 +5,12 @@
     padding: 20px;
     background-color: #333;
     color: white;
-  }
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: row;
+}
 
 /* ****************************************************************** */
 
