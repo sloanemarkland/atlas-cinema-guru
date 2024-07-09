@@ -38,6 +38,9 @@ const Authentication = ({ setIsLoggedIn, setUserUsername }) => {
           Sign Up
         </button>
       </div>
+      <div className="auth-header">
+        <h1>Sign in with your account</h1>
+      </div>
       <form className="auth-form" onSubmit={handleSubmit}>
         {switchRoutes ? (
           <Login username={username} password={password} setUsername={setUsername} setPassword={setPassword} />
