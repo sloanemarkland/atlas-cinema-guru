@@ -17,8 +17,12 @@ const SideBar = () => {
   };
 
   useEffect(() => {
-    axios.get('/api/activity')
-      .then(response => {
+    const accessToken = localStorage.getItem('accessToken');
+    axios.get('http://localhost:8000/api/activity', {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    }).then(response => {
         setActivities(response.data);
       })
       .catch(error => {
