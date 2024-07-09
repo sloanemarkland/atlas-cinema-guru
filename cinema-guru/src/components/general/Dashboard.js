@@ -1,9 +1,12 @@
 import React from 'react';
+import './dashboard.css';
+import Header from '../../components/navigation/Header'
 
-const Dashboard = ({ username }) => {
+const Dashboard = ({ userUsername, setIsLoggedIn }) => {
   return (
     <div>
-      <h1>Welcome, {username}!</h1>
+      <Header userUsername={userUsername} setIsLoggedIn={setIsLoggedIn} />
+      <h1>Welcome, {userUsername}!</h1>
     </div>
   );
 };

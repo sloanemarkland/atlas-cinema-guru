@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Authentication from './routes/auth/Authentication';
 import Dashboard from './routes/dashboard/Dashboard';
+// import SearchBar from './components/SearchBar';
 
 function App() {
   // State variables manage auth status and username of logged-in user
