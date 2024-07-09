@@ -4,14 +4,17 @@
 /* Styling for the header */
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 10px 20px;
     background-color: #444;
+    height: 62px;
 }
 
 .header img {
     border-radius: 50%;
+    height: 41px;
+    width: 41px;
 }
 
 .header p {
@@ -41,7 +44,7 @@
   }
   
   .sidebar.small {
-    width: 80px;
+    width: 50px;
   }
 
   /* ****************************************************************** */

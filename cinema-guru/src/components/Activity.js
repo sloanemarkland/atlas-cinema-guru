@@ -4,7 +4,7 @@ import './components.css';
 const Activity = ({ activity }) => {
   return (
     <li className="activity-item">
-      <p>{activity}</p>
+      <p>{activity.activityType}</p>
     </li>
   );
 };

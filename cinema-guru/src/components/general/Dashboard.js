@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import './dashboard.css';
 import Header from '../../components/navigation/Header'
 
@@ -8,6 +8,7 @@ const Dashboard = ({ userUsername, setIsLoggedIn }) => {
       <Header userUsername={userUsername} setIsLoggedIn={setIsLoggedIn} />
       <h1>Welcome, {userUsername}!</h1>
     </div>
+    
   );
 };
 

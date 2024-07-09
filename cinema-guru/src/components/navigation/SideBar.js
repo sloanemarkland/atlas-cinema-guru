@@ -8,7 +8,7 @@ const SideBar = () => {
   const [selected, setSelected] = useState('home');
   const [small, setSmall] = useState(true);
   const [activities, setActivities] = useState([]);
-  const [showActivities, setShowActivities] = useState(false);
+  const [showActivities, setShowActivities] = useState(true);
   const navigate = useNavigate();
 
   const setPage = (pageName) => {
