@@ -1,0 +1,90 @@
+/* src/components/movies/movies.css */
+.tag {
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 3px;
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .tag.selected {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .filter input, .filter select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .filter .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  /* src/components/movies/movies.css */
+.movie-card {
+    list-style: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px 0;
+    background-color: #fff;
+    position: relative;
+  }
+  
+  .movie-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #999;
+  }
+  
+  .action-icon.favorite {
+    color: #ff0000;
+  }
+  
+  .action-icon.watchlater {
+    color: #ffbf00;
+  }
+  
+  .movie-title {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+  
+  .movie-synopsis {
+    font-size: 16px;
+    margin: 0 0 10px 0;
+  }
+  
+  .movie-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .movie-genre {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  
