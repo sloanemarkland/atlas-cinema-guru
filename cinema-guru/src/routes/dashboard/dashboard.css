@@ -1,17 +1,40 @@
-/* src/routes/dashboard/dashboard.css */
-
-/* ****************************************************************** */
+/* Styling for the dashboard container and layout */
 .dashboard-container {
-    padding: 20px;
+    height: 100vh;
+    width: 100vw;
     background-color: #333;
     color: white;
-}
-
-.dashboard {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
-/* ****************************************************************** */
+.dashboard-content {
+    display: flex;
+    flex: 1;
+}
 
-/* ****************************************************************** */
+.sidebar {
+    width: 200px; /* Adjust width as needed */
+    background-color: #444;
+    height: 100%;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.input {
+    margin: 20px 0;
+}
+
+.input label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input input {
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+}

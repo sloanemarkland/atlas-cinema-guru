@@ -8,7 +8,7 @@ const SideBar = () => {
   const [selected, setSelected] = useState('home');
   const [small, setSmall] = useState(true);
   const [activities, setActivities] = useState([]);
-  const [showActivities, setShowActivities] = useState(true);
+  // const [showActivities, setShowActivities] = useState(true);
   const navigate = useNavigate();
 
   const setPage = (pageName) => {
@@ -31,7 +31,11 @@ const SideBar = () => {
   }, []);
 
   return (
-    <nav className={`sidebar ${small ? 'small' : ''}`}>
+    <nav
+      className={`sidebar ${small ? 'small' : 'large'}`}
+      onMouseEnter={() => setSmall(false)}
+      onMouseLeave={() => setSmall(true)}
+    >
       <ul className="navigation">
         <li onClick={() => setPage('home')} className={selected === 'home' ? 'active' : ''}>
           <i className="fas fa-home"></i> Home
@@ -43,8 +47,8 @@ const SideBar = () => {
           <i className="fas fa-clock"></i> Watch Later
         </li>
       </ul>
-      <ul className="activities">
-        {showActivities && activities.slice(0, 10).map((activity, index) => (
+      <ul className={`activities ${small ? 'hidden' : ''}`}>
+        {activities.slice(0, 10).map((activity, index) => (
           <Activity key={index} activity={activity} />
         ))}
       </ul>

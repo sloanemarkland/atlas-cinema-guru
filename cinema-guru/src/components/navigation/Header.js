@@ -10,15 +10,18 @@ const Header = ({ userUsername, setIsLoggedIn }) => {
   };
 
   return (
-    <>
-      <nav className="header">
+    <nav className="header">
+      <div className="header-left">
+        <p className="cinema-guru">Cinema Guru</p>
+      </div>
+      <div className="header-right">
         <img src="https://picsum.photos/100/100" alt="Avatar" />
         <p>Welcome, {userUsername}!</p>
         <span className="logout" onClick={logout}>
           <i className="fas fa-sign-out-alt"></i> Logout
         </span>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 };
 

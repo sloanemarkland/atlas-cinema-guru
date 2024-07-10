@@ -3,30 +3,49 @@
 /* ****************************************************************** */
 /* Styling for the header */
 .header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #444;
-    height: 62px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  background-color: #161616;
+  height: 62px;
+  color: white;
+  z-index: 1000;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.cinema-guru {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
 }
 
 .header img {
-    border-radius: 50%;
-    height: 41px;
-    width: 41px;
+  border-radius: 50%;
+  height: 41px;
+  width: 41px;
 }
 
 .header p {
-    margin: 0;
-    font-size: 1.2rem;
+  margin: 0;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .header .logout {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: red;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: red;
 }
 
 /* ****************************************************************** */
@@ -41,10 +60,15 @@
     height: 100%;
     padding: 20px;
     overflow-y: auto;
+    position: relative;
   }
   
   .sidebar.small {
     width: 50px;
+  }
+
+  .sidebar ul {
+    font-size: 16px;
   }
 
   /* ****************************************************************** */
@@ -60,7 +84,11 @@
   }
   
   .navigation li.active {
-    background-color: #444;
+    background-color: #E31C25;
+  }
+
+  ul.navigation {
+    font-size: 16px;
   }
 
 /* ****************************************************************** */
