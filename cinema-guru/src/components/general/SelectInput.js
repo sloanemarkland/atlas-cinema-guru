@@ -39,6 +39,7 @@ SelectInput.propTypes = {
 SelectInput.defaultProps = {
   label: '',
   className: '',
+  options: [],
 };
 
 export default SelectInput;

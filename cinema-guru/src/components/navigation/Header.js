@@ -2,6 +2,7 @@
 
 import React from 'react';
 import './navigation.css';
+// import '@fortawesome/free-solid-svg-icons';
 
 const Header = ({ userUsername, setIsLoggedIn }) => {
   const logout = () => {
