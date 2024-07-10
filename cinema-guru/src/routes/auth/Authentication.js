@@ -8,6 +8,7 @@ import Register from './Register';
 
 const Authentication = ({ setIsLoggedIn, setUserUsername }) => {
   const [switchRoutes, setSwitchRoutes] = useState(true);
+  const [selectedButton, setSelectedButton] = useState('signin');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -31,15 +32,15 @@ const Authentication = ({ setIsLoggedIn, setUserUsername }) => {
   return (
     <div className="auth-container">
       <div className="auth-buttons">
-        <button onClick={()=>setSwitchRoutes(true)} className="auth-button">
+      <button onClick={() => { setSwitchRoutes(true); setSelectedButton('signin'); }} className={`auth-button ${selectedButton === 'signin' ? 'selected' : ''}`}>
           Sign In
         </button>
-        <button onClick={()=>setSwitchRoutes(false)} className="auth-button">
+        <button onClick={() => { setSwitchRoutes(false); setSelectedButton('signup'); }} className={`auth-button ${selectedButton === 'signup' ? 'selected' : ''}`}>
           Sign Up
         </button>
       </div>
       <div className="auth-header">
-        <h1>Sign in with your account</h1>
+        <p>Sign in with your account</p>
       </div>
       <form className="auth-form" onSubmit={handleSubmit}>
         {switchRoutes ? (
