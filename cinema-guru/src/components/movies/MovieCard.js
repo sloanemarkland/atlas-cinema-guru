@@ -1,8 +1,8 @@
 // src/components/movies/MovieCard.js
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faClock } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
 import './movies.css';
 
 const MovieCard = ({ movie }) => {
@@ -10,69 +10,86 @@ const MovieCard = ({ movie }) => {
   const [isWatchLater, setIsWatchLater] = useState(false);
 
   useEffect(() => {
-    const fetchMovieStatus = async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    const checkFavoriteAndWatchLater = async () => {
       try {
-        const favoriteResponse = await axios.get('/api/titles/favorite/');
-        const watchLaterResponse = await axios.get('/api/titles/watchlater/');
+        const favoriteResponse = await axios.get('http://localhost:8000/api/titles/favorite/', {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
+        const watchLaterResponse = await axios.get('http://localhost:8000/api/titles/watchlater/', {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
 
-        const isFav = favoriteResponse.data.some(favMovie => favMovie.imdbId === movie.imdbId);
-        const isWatchLater = watchLaterResponse.data.some(watchMovie => watchMovie.imdbId === movie.imdbId);
-
-        setIsFavorite(isFav);
-        setIsWatchLater(isWatchLater);
+        setIsFavorite(favoriteResponse.data.some(favMovie => favMovie.imdbId === movie.imdbId));
+        setIsWatchLater(watchLaterResponse.data.some(wlMovie => wlMovie.imdbId === movie.imdbId));
       } catch (error) {
-        console.error('Error fetching movie status:', error);
+        console.error('Error fetching user lists:', error);
       }
     };
 
-    fetchMovieStatus();
-  }, [movie.imdbId]);
+    if (movie && movie.imdbId) {
+      checkFavoriteAndWatchLater();
+    }
+  }, [movie]);
 
   const handleClick = async (type) => {
     try {
+      const accessToken = localStorage.getItem('accessToken');
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      };
+
       if (type === 'favorite') {
         if (isFavorite) {
-          await axios.delete(`/api/titles/favorite/${movie.imdbId}`);
+          await axios.delete(`/api/titles/favorite/${movie.imdbId}`, config);
           setIsFavorite(false);
         } else {
-          await axios.post(`/api/titles/favorite/${movie.imdbId}`);
+          await axios.post(`/api/titles/favorite/${movie.imdbId}`, {}, config);
           setIsFavorite(true);
         }
       } else if (type === 'watchlater') {
         if (isWatchLater) {
-          await axios.delete(`/api/titles/watchlater/${movie.imdbId}`);
+          await axios.delete(`/api/titles/watchlater/${movie.imdbId}`, config);
           setIsWatchLater(false);
         } else {
-          await axios.post(`/api/titles/watchlater/${movie.imdbId}`);
+          await axios.post(`/api/titles/watchlater/${movie.imdbId}`, {}, config);
           setIsWatchLater(true);
         }
       }
     } catch (error) {
-      console.error(`Error updating ${type} status:`, error);
+      console.error(`Error updating ${type} list:`, error);
     }
   };
 
   return (
     <li className="movie-card">
-      <div className="movie-actions">
-        <FontAwesomeIcon 
-          icon={faHeart} 
-          className={`action-icon ${isFavorite ? 'favorite' : ''}`} 
-          onClick={() => handleClick('favorite')} 
-        />
-        <FontAwesomeIcon 
-          icon={faClock} 
-          className={`action-icon ${isWatchLater ? 'watchlater' : ''}`} 
-          onClick={() => handleClick('watchlater')} 
-        />
+      <div className="movie-header">
+        <h2>{movie?.title}</h2>
+        <div className="movie-actions">
+          <FontAwesomeIcon 
+            icon={faHeart} 
+            className={`action-icon ${isFavorite ? 'favorite' : ''}`} 
+            onClick={() => handleClick('favorite')} 
+          />
+          <FontAwesomeIcon 
+            icon={faClock} 
+            className={`action-icon ${isWatchLater ? 'watchlater' : ''}`} 
+            onClick={() => handleClick('watchlater')} 
+          />
+        </div>
       </div>
-      <h3 className="movie-title">{movie.title}</h3>
-      <p className="movie-synopsis">{movie.synopsis}</p>
-      <div className="movie-genres">
-        {movie.genres.map((genre, index) => (
-          <span key={index} className="movie-genre">{genre}</span>
+      <p>{movie?.synopsis}</p>
+      <ul className="movie-genres">
+        {movie?.genres?.map((genre, index) => (
+          <li key={index}>{genre}</li>
         ))}
-      </div>
+      </ul>
     </li>
   );
 };
